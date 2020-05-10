@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router() // used to create routes in separate files
+const validateFields = require('../control/validateFields')
 
 const mongoose = require('mongoose')
 require('../models/Category')
@@ -14,7 +15,41 @@ router.get('/posts', (request, response) => {
 })
 
 router.get('/categories', (request, response) => {
-    response.render('admin/categories')
+    Category.find().sort({ date: 'desc' }).then((categories) => {
+        response.render('admin/categories', { categories: categories.map(category => category.toJSON()) })
+    }).catch((err) => {
+        request.flash('error_msg', 'Error listing the categories')
+        response.redirect('/admin')
+    })
+})
+
+router.get('/categories/edit/:id', (request, response) => {
+    Category.findOne({ _id: request.params.id }).lean().then((category) => {
+        response.render('admin/editcategories', { category: category })
+    }).catch((err) => {
+        request.flash('error_msg', 'This category does not exist')
+        response.redirect('/admin/categories')
+    })
+})
+
+router.post('/categories/edit', (request, response) => {
+    Category.findOne({ _id: request.body.id }).then((category) => {
+
+        category.name = request.body.name
+        category.slug = request.body.slug
+
+        category.save().then(() => {
+            request.flash('success_msg', 'Category edited with success')
+            response.redirect('/admin/categories')
+        }).catch((err) => {
+            request.flash('error_msg', 'Error save the edition')
+            response.redirect('/admin/categories')
+        })
+
+    }).catch((err) => {
+        request.flash('error_msg', 'Error edit the category')
+        response.redirect('/admin/categories')
+    })
 })
 
 router.get('/categories/add', (request, response) => {
@@ -22,36 +57,26 @@ router.get('/categories/add', (request, response) => {
 })
 
 router.post('/categories/new', (request, response) => {
-    
-    var error = []
 
-    if (!request.body.name || typeof request.body.name == undefined || request.body.name == null) {
-        error.push({texto: 'invalid name'})
-    }
-
-    if (!request.body.slug || typeof request.body.slug == undefined || request.body.slug == null) {
-        error.push({texto: 'invalid slug'})
-    }
-
-    if (request.body.name.length < 2) {
-        error.push({texto: 'name of the category is very small'})    
-    }
+    var error = validateFields(request.body)
 
     if (error.length > 0) {
-        response.render('admin/addcategories', {error: error})        
+        response.render('admin/addcategories', { error: error })
     }
+    else {
+        const newCategory = {
+            name: request.body.name,
+            slug: request.body.slug
+        }
 
-    const newCategory = {
-        name: request.body.name,
-        slug: request.body.slug
+        new Category(newCategory).save().then(() => {
+            request.flash('success_msg', 'Category created with success')
+            response.redirect('/admin/categories')
+        }).catch((err) => {
+            request.flash('error_msg', 'Error create the category, try again!')
+            response.redirect('/admin')
+        })
     }
-    
-    new Category (newCategory).save().then(() => {
-        console.log("Category saved with sucess")
-    
-    }).catch((err) => {
-        console.log("Error register the category: "+err)
-    })  
 })
 
 module.exports = router

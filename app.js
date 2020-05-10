@@ -9,17 +9,16 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const app = express()
 
-// Settings
-
+// Configuration 
 app.use(session({
-    secret: 'aprendendonodejs',
+    secret: 'keysessionsecure',
     resave: true,
     saveUninitialized: true
 }))
 
 app.use(flash())
 
-app.use((request, response, next) => {
+app.use((request, response, next) => { // middleware with global variables
     response.locals.success_msg = request.flash('success_msg')
     response.locals.error_msg = request.flash('error_msg')
     next()
@@ -51,11 +50,9 @@ mongoose.connect('mongodb://localhost/blogapp', {
 app.use(express.static(path.join(__dirname, "public")))
 
 // Routes
-
 app.use('/admin', admin)
 
 // Others
-
 const PORT = 8080
 app.listen(PORT, () => {
     console.log("The server is running on URL http://localhost:"+PORT)
