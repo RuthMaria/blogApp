@@ -10,10 +10,6 @@ router.get('/', (request, response) => {
     response.render("admin/index")
 })
 
-router.get('/posts', (request, response) => {
-    response.send('Page of posts')
-})
-
 router.get('/categories', (request, response) => {
     Category.find().sort({ date: 'desc' }).then((categories) => {
         response.render('admin/categories', { categories: categories.map(category => category.toJSON()) })
@@ -52,6 +48,16 @@ router.post('/categories/edit', (request, response) => {
     })
 })
 
+router.get('/categories/delete/:id', (request, response) => {
+    Category.deleteOne({_id: request.params.id}).then(() => {
+        request.flash('success_msg', 'Category deleted with success')
+        response.redirect('/admin/categories')
+    }).catch((err) => {
+        request.flash('error_msg', 'Error delete the category')
+        response.redirect('/admin/categories')
+    })
+})
+
 router.get('/categories/add', (request, response) => {
     response.render('admin/addcategories')
 })
@@ -79,4 +85,20 @@ router.post('/categories/new', (request, response) => {
     }
 })
 
+router.get('/posts', (request, response) => {
+    response.render('admin/posts')
+})
+
+router.get('/posts/add', (request, response) => {
+    Category.find().lean().then((categories) => {
+        response.render('admin/addposts', {categories: categories})
+    }).catch((err) => {
+        request.flash('error_msg', 'Error loading the form')
+        response.redirect('/admin')
+    })
+})
+
+router.post('/posts/new', (request, response) => {
+    
+})
 module.exports = router
