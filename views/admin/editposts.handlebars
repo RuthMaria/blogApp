@@ -1,0 +1,51 @@
+{{#each error}}
+<div class="alert alert-danger">{{text}}</div>
+
+{{else}}
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <h4>Edit post</h4><br>
+        <form action="/admin/post/edit" method="POST">
+            <input type="hidden" value="{{post._id}}" name="id">
+            <label for="title">Title: </label>
+            <input type="text" name="title" class="form-control" value="{{post.title}}" required>
+
+            <label for="slug">Slug: </label>
+            <input type="text" name="slug" class="form-control" value="{{post.slug}}" required>
+
+            <label for="description">Description: </label>
+            <input type="text" name="description" class="form-control" value="{{post.description}}" required>
+
+            <label for="content">Content: </label>
+            <textarea name="content" class='form-control' required>{{post.content}}</textarea>
+
+            <label for="category">Category: </label>
+            <select name="category" class="custom-select">
+                {{#each categories}}
+                <option value="{{_id}}">{{name}}</option>
+                {{else}}
+                <option value="0"> No registered categories </option>
+                {{/each}}
+            </select>
+
+            <button type="submit" class="btn btn-success mt-4"> save </button>
+        </form>
+        <script>
+
+            function updateSel() {
+                var category = document.getElementById("category")
+                var option1 = document.getElementsByTagName("option")
+                var id_sel = "{{post.category._id}}"
+
+                for (var i = 0; i < option1.length; i++) {
+                    if (option1[i].value == id_sel) {
+                        option1[i].setAttribute("selected", "true")
+                    }
+                }
+            }
+            updateSel()
+        </script>
+    </div>
+</div>

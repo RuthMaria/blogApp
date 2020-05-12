@@ -1,10 +1,14 @@
 const express = require('express')
 const router = express.Router() // used to create routes in separate files
-const validateFields = require('../control/validateFields')
+const validateCategory = require('../control/validateCategory')
+
 
 const mongoose = require('mongoose')
 require('../models/Category')
 const Category = mongoose.model('categories') //created a reference the table
+
+require('../models/Post')
+const Post = mongoose.model('posts') //created a reference the table
 
 router.get('/', (request, response) => {
     response.render("admin/index")
@@ -49,7 +53,7 @@ router.post('/categories/edit', (request, response) => {
 })
 
 router.get('/categories/delete/:id', (request, response) => {
-    Category.deleteOne({_id: request.params.id}).then(() => {
+    Category.deleteOne({ _id: request.params.id }).then(() => {
         request.flash('success_msg', 'Category deleted with success')
         response.redirect('/admin/categories')
     }).catch((err) => {
@@ -64,11 +68,12 @@ router.get('/categories/add', (request, response) => {
 
 router.post('/categories/new', (request, response) => {
 
-    var error = validateFields(request.body)
+    var error = validateCategory(request.body)
 
     if (error.length > 0) {
         response.render('admin/addcategories', { error: error })
     }
+
     else {
         const newCategory = {
             name: request.body.name,
@@ -86,12 +91,17 @@ router.post('/categories/new', (request, response) => {
 })
 
 router.get('/posts', (request, response) => {
-    response.render('admin/posts')
+    Post.find().populate('category').sort({ data: 'desc' }).then((posts) => {
+        response.render('admin/posts', { posts: posts.map(posts => posts.toJSON()) })
+    }).catch((err) => {
+        request.flash('error_msg', 'Error list of posts')
+        response.redirect('/admin/')
+    })
 })
 
 router.get('/posts/add', (request, response) => {
     Category.find().lean().then((categories) => {
-        response.render('admin/addposts', {categories: categories})
+        response.render('admin/addposts', { categories: categories })
     }).catch((err) => {
         request.flash('error_msg', 'Error loading the form')
         response.redirect('/admin')
@@ -99,6 +109,71 @@ router.get('/posts/add', (request, response) => {
 })
 
 router.post('/posts/new', (request, response) => {
-    
+
+    var error = []
+
+    if (request.body.category == '0') {
+        error.push({ text: 'Invalid category, register a category' })
+    }
+
+    if (error.length > 0) {
+        response.render('admin/addposts', { error: error })
+
+    } else {
+        const newPost = {
+            title: request.body.title,
+            description: request.body.description,
+            content: request.body.content,
+            category: request.body.category,
+            slug: request.body.slug
+        }
+
+        new Post(newPost).save().then(() => {
+            request.flash('success_msg', 'Post created with success!')
+            response.redirect('/admin/posts')
+        }).catch((err) => {
+            request.flash('error_msg', 'Error saved the post!')
+            response.redirect('/admin/posts')
+        })
+
+    }
+})
+
+router.get('/posts/edit/:id', (request, response) => {
+
+    Post.findById({ _id: request.params.id }).lean().populate('category').then((post) => {
+        Category.find().lean().then((categories) => {
+            response.render('admin/editposts', { post: post, categories: categories, })
+        }).catch((err) => {
+            request.flash('error_msg', 'Error list the category!')
+            response.redirect('/admin/posts')
+        })
+
+    }).catch((err) => {
+        request.flash('error_msg', 'Error loading the form!')
+        response.redirect('/admin/posts')
+    })
+})
+
+router.post('/post/edit', (request, response) => {
+    Post.findOne({ _id: request.body.id }).then((post) => {
+        post.title = request.body.title,
+            post.description = request.body.description,
+            post.content = request.body.content,
+            post.slug = request.body.slug,
+            post.category = request.body.category
+
+        post.save().then(() => {
+            request.flash('success_msg', 'Post edited with success!')
+            response.redirect('/admin/posts')
+        }).catch((err) => {
+            request.flash('error_msg', 'Error save the edition!')
+            response.redirect('/admin/posts')
+        })
+
+    }).catch((err) => {
+        request.flash('error_msg', 'Error save the edition!')
+        response.redirect('/admin/posts')
+    })
 })
 module.exports = router

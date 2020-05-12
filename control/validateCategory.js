@@ -1,5 +1,5 @@
     
-var validateFields = function(category){
+var validateCategory = function(category){
     var error = []
 
     if (!category.name || typeof category.name == undefined || category.name == null) {
@@ -17,4 +17,4 @@ var validateFields = function(category){
     return error
 }
 
-module.exports = validateFields
+module.exports = validateCategory
