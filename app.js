@@ -8,6 +8,8 @@ const path = require('path')   // works with directories and folders
 const session = require('express-session')
 const flash = require('connect-flash')
 const app = express()
+require('./models/Post')
+const Post = mongoose.model('posts')
 
 // Configuration 
 app.use(session({
@@ -50,6 +52,18 @@ mongoose.connect('mongodb://localhost/blogapp', {
 app.use(express.static(path.join(__dirname, "public")))
 
 // Routes
+app.get('/', (request, response) => {
+    Post.find().populate('category').sort({date:'desc'}).then((posts) => {
+        response.render('index', {posts:posts.map(posts => posts.toJSON()) }) 
+    }).catch((err) => {
+        request.flash('error_msg', 'Internal error')
+        response.redirect('/404')
+    })
+})
+
+app.get('/404', (request, response) => {
+    response.send('Error 404! Page not found!')
+})
 app.use('/admin', admin)
 
 // Others

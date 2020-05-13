@@ -23,7 +23,7 @@ router.get('/categories', (request, response) => {
     })
 })
 
-router.get('/categories/edit/:id', (request, response) => {
+router.post('/categories/edit/:id', (request, response) => {
     Category.findOne({ _id: request.params.id }).lean().then((category) => {
         response.render('admin/editcategories', { category: category })
     }).catch((err) => {
@@ -52,8 +52,8 @@ router.post('/categories/edit', (request, response) => {
     })
 })
 
-router.get('/categories/delete/:id', (request, response) => {
-    Category.deleteOne({ _id: request.params.id }).then(() => {
+router.post('/categories/delete', (request, response) => {
+    Category.deleteOne({ _id: request.body.id }).then(() => {
         request.flash('success_msg', 'Category deleted with success')
         response.redirect('/admin/categories')
     }).catch((err) => {
@@ -91,7 +91,7 @@ router.post('/categories/new', (request, response) => {
 })
 
 router.get('/posts', (request, response) => {
-    Post.find().populate('category').sort({ data: 'desc' }).then((posts) => {
+    Post.find().populate('category').sort({ date: 'desc' }).then((posts) => {
         response.render('admin/posts', { posts: posts.map(posts => posts.toJSON()) })
     }).catch((err) => {
         request.flash('error_msg', 'Error list of posts')
@@ -139,7 +139,7 @@ router.post('/posts/new', (request, response) => {
     }
 })
 
-router.get('/posts/edit/:id', (request, response) => {
+router.post('/posts/edit/:id', (request, response) => {
 
     Post.findById({ _id: request.params.id }).lean().populate('category').then((post) => {
         Category.find().lean().then((categories) => {
@@ -176,4 +176,15 @@ router.post('/post/edit', (request, response) => {
         response.redirect('/admin/posts')
     })
 })
+
+router.post('/posts/delete', (request, response) => {
+    Post.deleteOne({_id: request.body.id}).then(() => {
+        request.flash('success_msg', 'Post deleted with success')
+        response.redirect('/admin/posts')
+    }).catch((err) => {
+        request.flash('error_msg', 'Error delete the post')
+        response.redirect('/admin/posts')
+    })
+})
+
 module.exports = router

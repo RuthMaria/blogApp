@@ -2,15 +2,30 @@
 <hr>
 
 {{#each categories}}
-    <div class="card mt-4">
-        <div class="card-body">
-            <h4> {{name}} </h4>
-            <small>Slug: {{slug}} </small> <br>
-            <small>Date of creation: {{date}}</small><br>
-            <a href="/admin/categories/edit/{{_id}}"><button class="btn btn-primary mt-4"> Edit </button></a>
-            <a href="/admin/categories/delete/{{_id}}"><button class="btn btn-danger mt-4">Delete</button></a>
-        </div>
+<div class="card mt-4">
+    <div class="card-body">
+        <h4> {{name}} </h4>
+        <small>Slug: {{slug}} </small> <br>
+        <small>Date of creation: {{date}}</small><br>
+        <form action="javascript:void(0)" method="post" name="buttons">
+            <input type="hidden" name="id" value="{{_id}}">
+            <input type="button" class="btn btn-primary mt-4" onclick="submitForm('Edit')" value = 'Edit'/>  
+            <input type="button" class="btn btn-danger mt-4" onclick="submitForm('Delete')" value = 'Delete'/>
+        </form>
+
+        <script type="text/javascript">
+            function submitForm(action) {
+                if (action == 'Edit') {
+                    document.forms.buttons.action = "/admin/categories/edit/{{_id}}";
+                    document.forms.buttons.submit();
+                } else if (action== 'Delete') {
+                    document.forms.buttons.action = "/admin/categories/delete";
+                    document.forms.buttons.submit();
+                }
+            }
+        </script>
     </div>
+</div>
 {{else}}
 
 <h4 class="mt-3">No registered categories</h4>
