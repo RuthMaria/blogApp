@@ -6,7 +6,7 @@
     <div class="card-body">
         <h4> {{name}} </h4>
         <small>Slug: {{slug}} </small> <br>
-        <small>Date of creation: {{date}}</small><br>
+        <small>Date of creation: {{#formatDate date}}{{/formatDate}}</small><br>
         <form action="javascript:void(0)" method="post" name="buttons">
             <input type="hidden" name="id" value="{{_id}}">
             <input type="button" class="btn btn-primary mt-4" onclick="submitForm('Edit')" value = 'Edit'/>  
