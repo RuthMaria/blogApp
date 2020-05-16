@@ -13,13 +13,19 @@ const Post = mongoose.model('posts')
 require('./models/Category')
 const Category = mongoose.model('categories')
 const moment = require('moment')
+const users = require('./routes/user')
+const passport = require('passport')
+require('./config/auth')(passport)
 
-// Configuration 
+// Settings
 app.use(session({
     secret: 'keysessionsecure',
     resave: true,
     saveUninitialized: true
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(flash())
 
@@ -50,7 +56,8 @@ mongoose.Promise = global.Promise
 
 mongoose.connect('mongodb://localhost/blogapp', {
     useNewUrlParser: true,
-    useUnifiedTopology: true 
+    useUnifiedTopology: true, 
+    useCreateIndex: true
 }).then(() => {
     console.log("MongoDB conected ...")
     
@@ -117,7 +124,9 @@ app.get('/categories/:slug', (request, response) => {
 app.get('/404', (request, response) => {
     response.send('Error 404! Page not found!')
 })
+
 app.use('/admin', admin)
+app.use('/users', users)
 
 // Others
 const PORT = 8080
