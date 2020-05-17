@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router() // used to create routes in separate files
 const validateCategory = require('../control/validateCategory')
-
+const {itsAdmin} = require('../helpers/itsAdmin')
 
 const mongoose = require('mongoose')
 require('../models/Category')
@@ -10,11 +10,11 @@ const Category = mongoose.model('categories') //created a reference the table
 require('../models/Post')
 const Post = mongoose.model('posts') //created a reference the table
 
-router.get('/', (request, response) => {
+router.get('/', itsAdmin, (request, response) => {
     response.render("admin/index")
 })
 
-router.get('/categories', (request, response) => {
+router.get('/categories', itsAdmin, (request, response) => {
     Category.find().sort({ date: 'desc' }).then((categories) => {
         response.render('admin/categories', { categories: categories.map(category => category.toJSON()) })
     }).catch((err) => {
@@ -23,7 +23,7 @@ router.get('/categories', (request, response) => {
     })
 })
 
-router.post('/categories/edit/:id', (request, response) => {
+router.post('/categories/edit/:id', itsAdmin, (request, response) => {
     Category.findOne({ _id: request.params.id }).lean().then((category) => {
         response.render('admin/editcategories', { category: category })
     }).catch((err) => {
@@ -32,7 +32,7 @@ router.post('/categories/edit/:id', (request, response) => {
     })
 })
 
-router.post('/categories/edit', (request, response) => {
+router.post('/categories/edit', itsAdmin, (request, response) => {
     Category.findOne({ _id: request.body.id }).then((category) => {
 
         category.name = request.body.name
@@ -52,7 +52,7 @@ router.post('/categories/edit', (request, response) => {
     })
 })
 
-router.post('/categories/delete', (request, response) => {
+router.post('/categories/delete', itsAdmin, (request, response) => {
     Category.deleteOne({ _id: request.body.id }).then(() => {
         request.flash('success_msg', 'Category deleted with success')
         response.redirect('/admin/categories')
@@ -62,11 +62,11 @@ router.post('/categories/delete', (request, response) => {
     })
 })
 
-router.get('/categories/add', (request, response) => {
+router.get('/categories/add', itsAdmin, (request, response) => {
     response.render('admin/addcategories')
 })
 
-router.post('/categories/new', (request, response) => {
+router.post('/categories/new', itsAdmin, (request, response) => {
 
     var error = validateCategory(request.body)
 
@@ -90,7 +90,7 @@ router.post('/categories/new', (request, response) => {
     }
 })
 
-router.get('/posts', (request, response) => {
+router.get('/posts', itsAdmin, (request, response) => {
     Post.find().populate('category').sort({ date: 'desc' }).then((posts) => {
         response.render('admin/posts', { posts: posts.map(posts => posts.toJSON()) })
     }).catch((err) => {
@@ -99,7 +99,7 @@ router.get('/posts', (request, response) => {
     })
 })
 
-router.get('/posts/add', (request, response) => {
+router.get('/posts/add', itsAdmin, (request, response) => {
     Category.find().lean().then((categories) => {
         response.render('admin/addposts', { categories: categories })
     }).catch((err) => {
@@ -108,7 +108,7 @@ router.get('/posts/add', (request, response) => {
     })
 })
 
-router.post('/posts/new', (request, response) => {
+router.post('/posts/new', itsAdmin, (request, response) => {
 
     var error = []
 
@@ -139,7 +139,7 @@ router.post('/posts/new', (request, response) => {
     }
 })
 
-router.post('/posts/edit/:id', (request, response) => {
+router.post('/posts/edit/:id', itsAdmin, (request, response) => {
 
     Post.findById({ _id: request.params.id }).lean().populate('category').then((post) => {
         Category.find().lean().then((categories) => {
@@ -155,7 +155,7 @@ router.post('/posts/edit/:id', (request, response) => {
     })
 })
 
-router.post('/post/edit', (request, response) => {
+router.post('/post/edit', itsAdmin, (request, response) => {
     Post.findOne({ _id: request.body.id }).then((post) => {
         post.title = request.body.title,
             post.description = request.body.description,
@@ -177,7 +177,7 @@ router.post('/post/edit', (request, response) => {
     })
 })
 
-router.post('/posts/delete', (request, response) => {
+router.post('/posts/delete', itsAdmin, (request, response) => {
     Post.deleteOne({_id: request.body.id}).then(() => {
         request.flash('success_msg', 'Post deleted with success')
         response.redirect('/admin/posts')

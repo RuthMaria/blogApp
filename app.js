@@ -16,6 +16,7 @@ const moment = require('moment')
 const users = require('./routes/user')
 const passport = require('passport')
 require('./config/auth')(passport)
+const db = require('./config/db')
 
 // Settings
 app.use(session({
@@ -32,6 +33,8 @@ app.use(flash())
 app.use((request, response, next) => { // middleware with global variables
     response.locals.success_msg = request.flash('success_msg')
     response.locals.error_msg = request.flash('error_msg')
+    response.locals.error = request.flash('error')
+    response.locals.user = request.user || null
     next()
 })
 
@@ -54,7 +57,7 @@ app.set('view engine', 'handlebars')
 
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb://localhost/blogapp', {
+mongoose.connect(db.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true, 
     useCreateIndex: true
@@ -129,7 +132,7 @@ app.use('/admin', admin)
 app.use('/users', users)
 
 // Others
-const PORT = 8080
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
     console.log("The server is running on URL http://localhost:"+PORT)
 })

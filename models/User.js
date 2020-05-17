@@ -13,7 +13,7 @@ const user = new Schema({
         unique:true
     },
 
-    itisAdmin:{
+    itsAdmin:{
         type: Number,
         default:0
     },

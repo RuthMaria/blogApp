@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/">Training NodeJs </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -12,12 +13,18 @@
       <li class="nav-item">
         <a class="nav-link" href="/categories">Categories</a>
       </li>
+      {{#if user}}
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Login</a>
-      </li>      
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">registry</a>
+        <a class="nav-link" href="/users/logout" tabindex="-1" aria-disabled="true">Log out</a>
       </li>
+      {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/users/login" tabindex="-1" aria-disabled="true">Log in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/registry" tabindex="-1" aria-disabled="true">Sign up</a>
+      </li>
+      {{/if}}
     </ul>
   </div>
 </nav>
