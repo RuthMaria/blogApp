@@ -1,18 +1,34 @@
-<h2>Login to your account</h2><br>
+<br><br><br>
+<section id="section">
+<h2 class="h3" id="title">Login to your account</h2><br>
 
 <div class="card">
     <div class="card-body">
         <form action="/users/login" method="post">
 
-            <label for="email">E-mail: </label>
-            <input type="email" name="email" class="form-control" placeholder="Enter your e-mail address" required>
+            <label for="email" id="email">E-mail address </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><img src="/img/icon-username.png"></div>
+                </div>
+                <input type="email" name="email" class="form-control" placeholder="E-mail address" required>
+            </div><br>
 
-            <label for="password">Password: </label>
-            <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+            <label for="password" id="password">Password </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><img src="/img/icon-password.png"></div>
+                </div>
+                <input type="password" name="password" class="form-control" placeholder="Password"required>
+            </div>
 
-            <button type="submit" class="btn btn-success mt-4">Enter</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Log in</button>
 
         </form>
-
     </div>
 </div>
+</section>
+
+<footer>
+    &copy; Desenvolvido por <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>
+</footer>
