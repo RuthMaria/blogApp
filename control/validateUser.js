@@ -15,7 +15,7 @@ var validateUser = function(user) {
         error.push({ text: 'Invalid password' })
     }
 
-    if (user.password.length < 4) {
+    if (user.password.length < 7) {
         error.push({ text: 'This password is very small' })
     }
 

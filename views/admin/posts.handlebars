@@ -9,7 +9,7 @@
         <p>Content: {{content}}</p>
         <p>Category: {{category.name}}</p>
         <small>Slug: {{slug}}</small><br>
-        <small>Date: {{date}}</small><br>
+        <small>Create dates: {{#formatDate date}}{{/formatDate}}</small><br>
         
         <form action="javascript:void(0)" method="post" name="buttons">
             <input type="hidden" name="id" value="{{_id}}">
@@ -37,3 +37,7 @@
 {{/each}}
 
 <a href="/admin/posts/add"><button class="btn btn-success mt-4"> New post </button></a>
+
+<footer>
+    &copy; Developed by  <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>
+</footer>

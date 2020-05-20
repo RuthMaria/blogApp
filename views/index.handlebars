@@ -3,21 +3,28 @@
   <p class="lead">This is a simple blog, developed with Node.js + Express + MongoDB</p>
   <hr class="my-4">
   <p>Here you will be able to read the news from the world of computing</p><br>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Create an account</a>
+  <a class="btn btn-primary btn-lg" href="/users/registry" role="button">Create an account</a>
 </div>
 
 <h2>Recent posts</h2>
-{{#each posts}}
-<div class='card mt-4'>
-  <div class="card-body">
-    <h3>{{title}}</h3>
-    <p>{{description}}</p>
-    <a href="/post/{{slug}}" class="btn btn-success">Read more</a>
-    <hr>    
-    <small>Category: {{category.name}}</small><br>
-    <small>Publish date: {{#formatDate date}}{{/formatDate}}</small>
+<div class="card-columns">
+  {{#each posts}}
+  <div class='card text-center mt-4'>
+    <div class="card-body">
+      <h3 class="card-title">{{title}}</h3>
+      <p class="card-text">{{description}}</p>
+      <a href="/post/{{slug}}" class="btn btn-success btn-sm">Read more</a>
+    </div>
+    <div class="card-footer">      
+      <small class="text-muted">Category: {{category.name}}</small><br>
+      <small class="text-muted">Publish date: {{#formatDate date}}{{/formatDate}}</small>
+    </div>
   </div>
+  {{else}}
+  <h5>No posts</h5>
+  {{/each}}
 </div>
-{{else}}
-<h5>No posts</h5>
-{{/each}}
+
+<footer>
+    &copy; Developed by  <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>
+</footer>
