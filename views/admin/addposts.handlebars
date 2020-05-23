@@ -4,23 +4,23 @@
     {{else}}
 {{/each}}
 
-<div class="card">
+<div class="card mx-auto" style="width: 60rem">
     <div class="card-body">
-        <h4>New post</h4><br>
+        <h3 class="text-center mb-4">New post</h3>
         <form action="/admin/posts/new" method="POST">
-            <label for="title">Title: </label>
-            <input type="text" name="title" class="form-control" required>
+            <label for="title">Title </label>
+            <input type="text" name="title" class="form-control mb-3" placeholder="Title" required>
 
-            <label for="slug">Slug: </label>
-            <input type="text" name="slug" class="form-control" required>
+            <label for="slug">Slug </label>
+            <input type="text" name="slug" class="form-control mb-3" placeholder="Slug" required>
 
-            <label for="description">Description: </label>
-            <input type="text" name="description" class="form-control" required>
+            <label for="description">Description </label>
+            <input type="text" name="description" class="form-control mb-3" placeholder="Description"required>
             
-            <label for="content">Content: </label>
-            <textarea name="content" class = 'form-control' required></textarea>
+            <label for="content">Content </label>
+            <textarea name="content" class = 'form-control mb-3' placeholder="Content" required></textarea>
 
-            <label for="category">Category: </label>
+            <label for="category">Category </label>
             <select name="category" class="custom-select">
                 <option selected>Choose...</option>
                 {{#each categories}}
@@ -30,7 +30,11 @@
                 {{/each}}
             </select>
 
-            <button type="submit" class="btn btn-success mt-4" > create </button>
+            <button type="submit" class="btn btn-success mt-4" style="float:right"> Create </button>
         </form>
     </div>
-</div>
+</div><br>
+
+<footer>
+    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 
+</footer>

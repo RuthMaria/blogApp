@@ -1,20 +1,19 @@
-<h2 class="text-center mt-5"> List of post </h2>
-<br>
+<h2 class="text-center mt-5 mb-5"> List of post </h2>
 
 {{#each posts}}
 <div class="card mt-4">
     <div class="card-body text-justify">
-        <h4 class="text-center"> {{title}} </h4><br>
+        <h4 class="text-center mb-4"> {{title}} </h4>
         <p> Description: {{description}}</p>
         <p>Content: {{content}}</p>
         <p>Category: {{category.name}}</p>
-        <small>Slug: {{slug}}</small><br>
-        <small>Create dates: {{#formatDate date}}{{/formatDate}}</small><br>
+        <p>Slug: {{slug}}</p>
+        <p>Create dates: {{#formatDate date}}{{/formatDate}}</p>
         
         <form action="javascript:void(0)" method="post" name="buttons">
             <input type="hidden" name="id" value="{{_id}}">
-            <input type="button" class="btn btn-primary mt-4" onclick="submitForm('Edit')" value='Edit' />
-            <input type="button" class="btn btn-danger mt-4" onclick="submitForm('Delete')" value='Delete' />
+            <input type="button" class="btn btn-success mt-2" onclick="submitForm('Edit')" value='Edit' />
+            <input type="button" class="btn btn-danger mt-2" onclick="submitForm('Delete')" value='Delete' />
         </form>
 
         <script type="text/javascript">
@@ -36,8 +35,8 @@
 <p> No posts registered! </p>
 {{/each}}
 
-<a href="/admin/posts/add"><button class="btn btn-success mt-4"> New post </button></a>
+<a href="/admin/posts/add"><button class="btn btn-primary mt-4 btn-lg btn-block mb-3"> New post </button></a>
 
 <footer>
-    &copy; Developed by  <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>
+    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 
 </footer>
