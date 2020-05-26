@@ -1,26 +1,30 @@
 
-var validateUser = function(user) {
+var validateUser = function(currentUser, databaseUser) {
 
     var error = []
 
-    if (!user.name || typeof user.name == undefined || user.name == null) {
+    if (!currentUser.name || typeof currentUser.name == undefined || currentUser.name == null) {
         error.push({ text: 'Invalid name' })
     }
 
-    if (!user.email || typeof user.email == undefined || user.email == null) {
+    if (!currentUser.email || typeof currentUser.email == undefined || currentUser.email == null) {
         error.push({ text: 'Invalid email' })
     }
 
-    if (!user.password || typeof user.password == undefined || user.password == null) {
+    if (!currentUser.password || typeof currentUser.password == undefined || currentUser.password == null) {
         error.push({ text: 'Invalid password' })
     }
 
-    if (user.password.length < 7) {
+    if (currentUser.password.length < 7) {
         error.push({ text: 'This password is very small' })
     }
 
-    if (user.password != user.password2) {
+    if (currentUser.password != currentUser.password2) {
         error.push({ text: 'The passwords are different, try again!' })
+    }
+
+    if (currentUser.email == databaseUser) {
+        error.push({text:'There is an account with this email address!' })
     }
     
     return error

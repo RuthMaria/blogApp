@@ -143,7 +143,7 @@ router.post('/posts/edit/:id', itsAdmin, (request, response) => {
 
     Post.findById({ _id: request.params.id }).lean().populate('category').then((post) => {
         Category.find().lean().then((categories) => {
-            response.render('admin/editposts', { post: post, categories: categories, })
+            response.render('admin/editposts', { post: post, categories: categories})
         }).catch((err) => {
             request.flash('error_msg', 'Error list the category!')
             response.redirect('/admin/posts')

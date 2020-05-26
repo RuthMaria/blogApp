@@ -1,4 +1,5 @@
-// Loading modules
+// Module dependencies
+
 const express = require("express")
 const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
@@ -18,7 +19,7 @@ const passport = require('passport')
 require('./config/auth')(passport)
 const db = require('./config/db')
 
-// Settings
+// Configuration
 app.use(session({
     secret: 'keysessionsecure',
     resave: true,
@@ -38,9 +39,7 @@ app.use((request, response, next) => { // middleware with global variables
     next()
 })
 
-app.use(bodyParser.urlencoded({
-    extended:true
-}))
+app.use(bodyParser.urlencoded({ extended:true }))
 
 app.use(bodyParser.json())
 

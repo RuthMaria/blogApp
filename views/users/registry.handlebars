@@ -6,28 +6,26 @@
 {{/each}}
 
 <section id="section">
-    <h2 class="h3" id="title">Create an account</h2><br>
+    <h2 class="h3 mb-4" id="title">Create an account</h2>
     <div class="card">
         <div class="card-body">
-            <form action="" method="post">
+            <form action="/users/registry" method="post">
                 <label for="name">Full name <sub>*</sub></label>
-                <input type="text" name="name" class="form-control" placeholder="Full name" required><br>
+                <input type="text" name="name" class="form-control mb-3" placeholder="Full name" value="{{user.name}}" required>
 
                 <label for="email">E-mail <sub>*</sub></label>
-                <input type="email" name="email" class="form-control" placeholder="name@example.com" required><br>
+                <input type="email" name="email" class="form-control mb-3" placeholder="name@example.com" value="{{user.email}}" required>
 
                 <label for="password">Password <sub>*</sub></label>
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
-                <small id="passwordHelpBlock" class="form-text text-muted">
+                <small id="passwordHelpBlock" class="form-text text-muted mb-3">
                  Your password must be between 8 and 20 characters
-                </small><br>
+                </small>
 
                 <label for="password2">Repeat your password <sub>*</sub></label>
-                <input type="password" name="password2" class="form-control" placeholder="Confirm your password"
-                    required>
+                <input type="password" name="password2" class="form-control mb-4" placeholder="Repeat your password" required>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Create</button>
-
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
             </form>
         </div>
     </div>

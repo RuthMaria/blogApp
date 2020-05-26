@@ -1,6 +1,6 @@
-const localStrategy = require('passport-local').Strategy
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+const localStrategy = require('passport-local').Strategy // used to authenticate a password
+const mongoose = require('mongoose') // to use the database
+const bcrypt = require('bcryptjs') // used to encode a password
 
 //User model
 require('../models/User')

@@ -1,3 +1,5 @@
+// Defines which database will be used
+
 if (process.env.NODE_ENV == "production") {
     module.exports = {mongoURI: "mongodb+srv://root:rootadmin@cluster0-ehmnn.mongodb.net/test?retryWrites=true&w=majority"}
 } else {

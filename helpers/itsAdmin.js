@@ -1,10 +1,12 @@
+// Checks if the user is an administrator
+
 module.exports = {
-    itsAdmin: function(request, response,next) {
-        if (request.isAuthenticated() && request.user.itsAdmin == 1) {
+    itsAdmin: function(req, res, next) {
+        if (req.isAuthenticated() && req.user.itsAdmin == 1) {
             return next()
         }
 
-        request.flash('error_msg','You need is logged into an administrator account')
-        response.redirect('/')
+        req.flash('error_msg','You need is logged into an administrator account')
+        res.redirect('/')
     }
 }

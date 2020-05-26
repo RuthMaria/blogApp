@@ -1,79 +1,91 @@
+// Module dependencies
+
 const express = require('express')
 const router = express.Router()
+
 const mongoose = require('mongoose')
 require('../models/User')
 const User = mongoose.model('users')
-const validateUser= require('../control/validateUser')
+
+const validateUser = require('../control/validateUser')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
 
-router.get('/registry', (request, response) => {
-    response.render('users/registry')
+
+// Routes
+
+router.get('/registry', (req, res) => {
+    res.render('users/registry')
 })
 
-router.post('/registry', (request, response) => {
+router.post('/registry', (req, res) => {
+    
+    var error = []
 
-    const error = validateUser(request.body)
+    error = validateUser(req.body, null)
 
     if (error.length > 0) {
-        response.render('users/registry', {error:error})
+        res.render('users/registry', { error: error, user: req.body})
 
     } else {
-        User.findOne({email:request.body.email}).then((user) => {
+        User.findOne({ email: req.body.email }).then((user) => {
             if (user) {
-                request.flash('error_msg', 'There is an account with this email address!')
-                response.redirect('/users/registry')
+                error = []   
+                error = validateUser(req.body, user.email)   
+                res.render('users/registry', {error: error, user: req.body})        
+                
             } else {
                 const newUser = new User({
-                    name:request.body.name,
-                    email:request.body.email,
-                    password:request.body.password,
-                   // itsAdmin:1
-                })   
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: req.body.password,
+                    // itsAdmin:1
+                })
 
                 bcrypt.genSalt(10, (error, salt) => {
                     bcrypt.hash(newUser.password, salt, (error, hash) => {
                         if (error) {
-                            request.flash('error_msg', 'Error saved the user')
-                            response.redirect('/')
+                            req.flash('error_msg', 'Error saved the user')
+                            res.redirect('/')
                         }
 
                         newUser.password = hash
 
                         newUser.save().then(() => {
-                            request.flash('success_msg', 'User created with success!')
-                            response.redirect('/')
+                            req.flash('success_msg', 'User created with success!')
+                            res.redirect('/')
                         }).catch((err) => {
-                            request.flash('error_msg', 'Error create the user, try again!')
-                            response.redirect('/users/registry')
+                            req.flash('error_msg', 'Error create the user, try again!')
+                            res.redirect('/users/registry')
                         })
                     })
                 })
             }
 
         }).catch((err) => {
-            request.flash('error_msg', 'Internal error!')
-            response.redirect('/')
+            req.flash('error_msg', 'Internal error!')
+            res.redirect('/')
         })
     }
 })
 
-router.get('/login', (request, response) => {
-    response.render('users/login')
-})
+router.route('/login')
+    .get((req, res) => {
+        res.render('users/login')
+    })
 
-router.post('/login', (request, response, next) => {
-    passport.authenticate('local', {
-        successRedirect:'/',
-        failureRedirect:'/users/login',
-        failureFlash:true
-    })(request, response, next)
-})
+    .post((req, res, next) => {
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next)
+    })
 
-router.get('/logout', (request, response) => {
-    request.logout()
-    request.flash('success_msg', 'Logout with success!')
-    response.redirect('/')
+router.get('/logout', (req, res) => {
+    req.logout()
+    req.flash('success_msg', 'Logout with success!')
+    res.redirect('/')
 })
 
 module.exports = router
