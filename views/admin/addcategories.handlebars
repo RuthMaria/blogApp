@@ -4,10 +4,12 @@
 {{else}}
 
 {{/each}}
+<br><br>
+<section id="section">
+<h2 class="h3 mt-2 text-center" id="title">New category</h2>
 
-<div class="card mx-auto" style="width: 30rem">
+<div class="card mx-auto mt-4" id="fields">
     <div class="card-body">
-        <h3 class="text-center mb-5">New category</h3>
         <form action="/admin/categories/new" method="post">
             <label for="name">Name </label>
             <input type="text" id="name" name="name" placeholder="Name" class='form-control mb-3'>
@@ -15,10 +17,11 @@
             <label for="slug">Slug </label>
             <input type="text" id="slug" name="slug" placeholder="Slug" class='form-control mb-4'>
             
-            <button type="submit" class="btn btn-success mr-3" style="float:right"> Create </button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4"> Create </button>
         </form>
     </div>
 </div><br>
+</section>
 
 <footer>
     &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 

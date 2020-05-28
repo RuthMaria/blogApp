@@ -1,15 +1,10 @@
 <!-- Categories name -->
 
 <div class="card mb-3 text-center mx-auto mt-5" id="format2" style="width: 30rem;">
-    <h4 class="card-header">Category</h4>
+    <h4 class="card-header">Administrator</h4>
     <div class="card-body">
-        {{#each categories}}
-
-        <a href="/categories/{{slug}}" class="h5 text-center text-info"> {{name}} </a><br>
-
-        {{else}}
-
-        {{/each}}
+        <a href="/admin/categories" class="h5 text-center text-info"> Categories </a><br>
+        <a href="/admin/posts" class="h5 text-center text-info"> Posts </a>
     </div>
 </div>
 

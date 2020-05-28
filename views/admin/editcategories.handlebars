@@ -5,23 +5,28 @@
 
 {{/each}}
 
-<div class="card mx-auto" style="width: 30rem">
-    <div class="card-body">
-        <h3 class="text-center mb-5">Edit category</h3>
-        <form action="/admin/categories/edit" method="post">
-        <input type="hidden" name="id" value="{{category._id}}">
-            <label for="name">Name </label>
-            <input type="text" id="name" name="name" placeholder="Name" class='form-control mb-4' value="{{category.name}}">
+<br><br>
+<section id="section">
+    <h2 class="h3 mt-2 text-center mb-4" id="title">Edit category</h2>
 
-            <label for="slug">Slug </label>
-            <input type="text" id="slug" name="slug" placeholder="Slug" class='form-control mb-2' value="{{category.slug}}">
-            <br>
-            
-            <button type="submit" class="btn btn-success mr-3" style="float:right"> Update </button>
-        </form>
+    <div class="card mx-auto" id="fields">
+        <div class="card-body">
+            <form action="/admin/categories/edit" method="post">
+                <input type="hidden" name="id" value="{{category._id}}">
+                <label for="name">Name </label>
+                <input type="text" id="name" name="name" placeholder="Name" class='form-control mb-4'
+                    value="{{category.name}}">
+
+                <label for="slug">Slug </label>
+                <input type="text" id="slug" name="slug" placeholder="Slug" class='form-control mb-2'
+                    value="{{category.slug}}">
+                
+                <button type="submit" class="btn btn-success btn-lg btn-block mt-4"> Update </button>
+            </form>
+        </div>
     </div>
-</div><br>
+</section>
 
 <footer>
-    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 
+    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved.
 </footer>

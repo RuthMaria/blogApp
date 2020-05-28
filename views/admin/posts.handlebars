@@ -1,7 +1,9 @@
-<h2 class="text-center mt-5 mb-5"> List of post </h2>
+<h2 class="text-center"> List of post </h2>
+
+<a href="/admin/posts/add" class="btn btn-primary btn-lg mb-3 mt-4"> New post </a>
 
 {{#each posts}}
-<div class="card mt-4">
+<div class="card mt-4" id="format2">
     <div class="card-body text-justify">
         <h4 class="text-center mb-4"> {{title}} </h4>
         <p> Description: {{description}}</p>
@@ -9,25 +11,20 @@
         <p>Category: {{category.name}}</p>
         <p>Slug: {{slug}}</p>
         <p>Create dates: {{#formatDate date}}{{/formatDate}}</p>
-        
-        <form action="javascript:void(0)" method="post" name="buttons">
-            <input type="hidden" name="id" value="{{_id}}">
-            <input type="button" class="btn btn-success mt-2" onclick="submitForm('Edit')" value='Edit' />
-            <input type="button" class="btn btn-danger mt-2" onclick="submitForm('Delete')" value='Delete' />
-        </form>
 
-        <script type="text/javascript">
-            function submitForm(action) {
-                if (action == 'Edit') {
-                    document.forms.buttons.action = "/admin/posts/edit/{{_id}}";
-                    document.forms.buttons.submit();
-                } else if (action == 'Delete') {
-                    document.forms.buttons.action = "/admin/posts/delete";
-                    document.forms.buttons.submit();
-                }
-            }
-        </script>
-
+        <table>
+            <tr>
+                <td>
+                    <a href="/admin/posts/edit/{{_id}}" class="btn btn-success mt-2"> Edit</a>
+                </td>
+                <td>
+                    <form action="/admin/posts/delete" method="POST">
+                        <input type="hidden" name="id" value="{{_id}}">
+                        <button type="submit" class="btn btn-danger mt-2"> Delete </button>
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 
@@ -35,8 +32,6 @@
 <p> No posts registered! </p>
 {{/each}}
 
-<a href="/admin/posts/add"><button class="btn btn-primary mt-4 btn-lg btn-block mb-3"> New post </button></a>
-
 <footer>
-    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 
+    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved.
 </footer>

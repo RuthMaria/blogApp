@@ -1,38 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/"> <img src="/img/nodejs.svg" width='100' height='50' alt="Training NodeJs"> </a>
-  
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/categories">Categories</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/posts">Posts</a>
-      </li>
+
       {{#if user}}
-      <li class="nav-item">
-        <a class="nav-link" href="/users/logout" tabindex="-1" aria-disabled="true">Log out</a>
-      </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/administrator"> Admin </a>
+          </li>
+                
+        <li class="nav-item">
+          <a class="nav-link" href="/users/logout" tabindex="-1" aria-disabled="true">Log out</a>
+        </li>
+
       {{else}}
       <li class="nav-item">
         <a class="nav-link" href="/users/login" tabindex="-1" aria-disabled="true">Log in</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/users/registry" tabindex="-1" aria-disabled="true">Sign up</a>
       </li>
+
       {{/if}}
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
   </div>
 </nav>

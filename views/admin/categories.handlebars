@@ -1,40 +1,38 @@
-<h2 class="text-center"> List of categories </h2>
-<hr>
+<h2 class="text-center mb-4"> List of categories </h2>
+
+<a href="/admin/categories/add" class="btn btn-primary btn-lg mb-3 mt-4"> New category </a>
+
 <div class="card-columns">
     {{#each categories}}
 
-    <div class="card border-secondary mt-4">
+    <div class="card mt-4" id="format2">
         <div class="card-body">
             <h4 class="text-center mb-3"> {{name}} </h4>
             <p>Slug: {{slug}}</p>
             <p>Date of creation: {{#formatDate date}}{{/formatDate}}</p>
-            <form action="javascript:void(0)" method="post" name="buttons">
-                <input type="hidden" name="id" value="{{_id}}">
-                <input type="button" class="btn btn-success mt-2" onclick="submitForm('Edit')" value='Edit'/>
-                <input type="button" class="btn btn-danger mt-2" onclick="submitForm('Delete')" value='Delete'/>
-            </form>
 
-            <script type="text/javascript">
-                function submitForm(action) {
-                    if (action == 'Edit') {
-                        document.forms.buttons.action = "/admin/categories/edit/{{_id}}";
-                        document.forms.buttons.submit();
-                    } else if (action == 'Delete') {
-                        document.forms.buttons.action = "/admin/categories/delete";
-                        document.forms.buttons.submit();
-                    }
-                }
-            </script>
+            <table>
+                <tr>
+                    <td>
+                        <a href="/admin/categories/edit/{{_id}}" class="btn btn-success mt-2"> Edit</a>
+                    </td>
+                    <td>
+                        <form action="/admin/categories/delete" method="POST">
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <button type="submit" class="btn btn-danger mt-2"> Delete </button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            
         </div>
     </div>
 
     {{else}}
-
     <h4 class="mt-3">No registered categories</h4>
+
     {{/each}}
 </div>
-<br>
-<a href="/admin/categories/add" class="btn btn-primary btn-lg btn-block mx-auto mb-3"> New category </a>
 
 <footer>
     &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved.

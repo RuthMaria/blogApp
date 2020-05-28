@@ -1,3 +1,5 @@
+// Module dependencies
+
 const express = require('express')
 const router = express.Router() // used to create routes in separate files
 const validateCategory = require('../control/validateCategory')
@@ -10,181 +12,184 @@ const Category = mongoose.model('categories') //created a reference the table
 require('../models/Post')
 const Post = mongoose.model('posts') //created a reference the table
 
-router.get('/', itsAdmin, (request, response) => {
-    response.render("admin/index")
-})
 
-router.get('/categories', itsAdmin, (request, response) => {
+// routes
+
+router.get('/categories', itsAdmin, (req, res) => {
     Category.find().sort({ date: 'desc' }).then((categories) => {
-        response.render('admin/categories', { categories: categories.map(category => category.toJSON()) })
+        res.render('admin/categories', { categories: categories.map(category => category.toJSON()) })
     }).catch((err) => {
-        request.flash('error_msg', 'Error listing the categories')
-        response.redirect('/admin')
+        req.flash('error_msg', 'Error listing the categories')
+        res.redirect('/admin')
     })
 })
 
-router.post('/categories/edit/:id', itsAdmin, (request, response) => {
-    Category.findOne({ _id: request.params.id }).lean().then((category) => {
-        response.render('admin/editcategories', { category: category })
-    }).catch((err) => {
-        request.flash('error_msg', 'This category does not exist')
-        response.redirect('/admin/categories')
-    })
+router.get('/categories/add', itsAdmin, (req, res) => {
+    res.render('admin/addcategories')
 })
 
-router.post('/categories/edit', itsAdmin, (request, response) => {
-    Category.findOne({ _id: request.body.id }).then((category) => {
+router.post('/categories/new', itsAdmin, (req, res) => {
 
-        category.name = request.body.name
-        category.slug = request.body.slug
-
-        category.save().then(() => {
-            request.flash('success_msg', 'Category edited with success')
-            response.redirect('/admin/categories')
-        }).catch((err) => {
-            request.flash('error_msg', 'Error save the edition')
-            response.redirect('/admin/categories')
-        })
-
-    }).catch((err) => {
-        request.flash('error_msg', 'Error edit the category')
-        response.redirect('/admin/categories')
-    })
-})
-
-router.post('/categories/delete', itsAdmin, (request, response) => {
-    Category.deleteOne({ _id: request.body.id }).then(() => {
-        request.flash('success_msg', 'Category deleted with success')
-        response.redirect('/admin/categories')
-    }).catch((err) => {
-        request.flash('error_msg', 'Error delete the category')
-        response.redirect('/admin/categories')
-    })
-})
-
-router.get('/categories/add', itsAdmin, (request, response) => {
-    response.render('admin/addcategories')
-})
-
-router.post('/categories/new', itsAdmin, (request, response) => {
-
-    var error = validateCategory(request.body)
+    var error = validateCategory(req.body)
 
     if (error.length > 0) {
-        response.render('admin/addcategories', { error: error })
+        res.render('admin/addcategories', { error: error })
     }
 
     else {
         const newCategory = {
-            name: request.body.name,
-            slug: request.body.slug
+            name: req.body.name,
+            slug: req.body.slug
         }
 
         new Category(newCategory).save().then(() => {
-            request.flash('success_msg', 'Category created with success')
-            response.redirect('/admin/categories')
+            req.flash('success_msg', 'Category created with success')
+            res.redirect('/admin/categories')
         }).catch((err) => {
-            request.flash('error_msg', 'Error create the category, try again!')
-            response.redirect('/admin')
+            req.flash('error_msg', 'Error create the category, try again!')
+            res.redirect('/admin')
         })
     }
 })
 
-router.get('/posts', itsAdmin, (request, response) => {
+router.get('/categories/edit/:id', itsAdmin, (req, res) => {
+    Category.findOne({ _id: req.params.id }).lean().then((category) => {
+         res.render('admin/editcategories', { category: category })
+    }).catch((err) => {
+        req.flash('error_msg', 'This category does not exist')
+        res.redirect('/admin/categories')
+    })
+})
+
+router.post('/categories/edit', itsAdmin, (req, res) => {
+    Category.findOne({ _id: req.body.id }).then((category) => {
+
+        category.name = req.body.name
+        category.slug = req.body.slug
+
+        category.save().then(() => {
+            req.flash('success_msg', 'Category edited with success')
+            res.redirect('/admin/categories')
+        }).catch((err) => {
+            req.flash('error_msg', 'Error save the edition')
+            res.redirect('/admin/categories')
+        })
+
+    }).catch((err) => {
+        req.flash('error_msg', 'Error edit the category')
+        res.redirect('/admin/categories')
+    })
+})
+
+router.post('/categories/delete', itsAdmin, (req, res) => {
+    Category.deleteOne({ _id: req.body.id }).then(() => {
+        req.flash('success_msg', 'Category deleted with success')
+        res.redirect('/admin/categories')
+    }).catch((err) => {
+        req.flash('error_msg', 'Error delete the category')
+        res.redirect('/admin/categories')
+    })
+})
+
+router.get('/posts', itsAdmin, (req, res) => {
     Post.find().populate('category').sort({ date: 'desc' }).then((posts) => {
-        response.render('admin/posts', { posts: posts.map(posts => posts.toJSON()) })
+        res.render('admin/posts', { posts: posts.map(posts => posts.toJSON()) })
     }).catch((err) => {
-        request.flash('error_msg', 'Error list of posts')
-        response.redirect('/admin/')
+        req.flash('error_msg', 'Error list of posts')
+        res.redirect('/admin/')
     })
 })
 
-router.get('/posts/add', itsAdmin, (request, response) => {
+router.get('/posts/add', itsAdmin, (req, res) => {
     Category.find().lean().then((categories) => {
-        response.render('admin/addposts', { categories: categories })
+        res.render('admin/addposts', { categories: categories })
     }).catch((err) => {
-        request.flash('error_msg', 'Error loading the form')
-        response.redirect('/admin')
+        req.flash('error_msg', 'Error loading the form')
+        res.redirect('/admin')
     })
 })
 
-router.post('/posts/new', itsAdmin, (request, response) => {
+router.post('/posts/new', itsAdmin, (req, res) => {
 
     var error = []
 
-    if (request.body.category == '0') {
+    if (req.body.category == '0') {
         error.push({ text: 'Invalid category, register a category' })
     }
 
     if (error.length > 0) {
-        response.render('admin/addposts', { error: error })
+        res.render('admin/addposts', { error: error })
 
     } else {
         const newPost = {
-            title: request.body.title,
-            description: request.body.description,
-            content: request.body.content,
-            category: request.body.category,
-            slug: request.body.slug
+            title: req.body.title,
+            description: req.body.description,
+            content: req.body.content,
+            category: req.body.category,
+            slug: req.body.slug
         }
 
         new Post(newPost).save().then(() => {
-            request.flash('success_msg', 'Post created with success!')
-            response.redirect('/admin/posts')
+            req.flash('success_msg', 'Post created with success!')
+            res.redirect('/admin/posts')
         }).catch((err) => {
-            request.flash('error_msg', 'Error saved the post!')
-            response.redirect('/admin/posts')
+            req.flash('error_msg', 'Error saved the post!')
+            res.redirect('/admin/posts')
         })
 
     }
 })
 
-router.post('/posts/edit/:id', itsAdmin, (request, response) => {
+router.get('/posts/edit/:id', itsAdmin, (req, res) => {
 
-    Post.findById({ _id: request.params.id }).lean().populate('category').then((post) => {
+    Post.findById({ _id: req.params.id }).lean().populate('category').then((post) => {
         Category.find().lean().then((categories) => {
-            response.render('admin/editposts', { post: post, categories: categories})
+            res.render('admin/editposts', { post: post, categories: categories})
         }).catch((err) => {
-            request.flash('error_msg', 'Error list the category!')
-            response.redirect('/admin/posts')
+            req.flash('error_msg', 'Error list the category!')
+            res.redirect('/admin/posts')
         })
 
     }).catch((err) => {
-        request.flash('error_msg', 'Error loading the form!')
-        response.redirect('/admin/posts')
+        req.flash('error_msg', 'Error loading the form!')
+        res.redirect('/admin/posts')
     })
 })
 
-router.post('/post/edit', itsAdmin, (request, response) => {
-    Post.findOne({ _id: request.body.id }).then((post) => {
-        post.title = request.body.title,
-            post.description = request.body.description,
-            post.content = request.body.content,
-            post.slug = request.body.slug,
-            post.category = request.body.category
+router.post('/post/edit', itsAdmin, (req, res) => {
+    Post.findOne({ _id: req.body.id }).then((post) => {
+        post.title = req.body.title,
+            post.description = req.body.description,
+            post.content = req.body.content,
+            post.slug = req.body.slug,
+            post.category = req.body.category
 
         post.save().then(() => {
-            request.flash('success_msg', 'Post edited with success!')
-            response.redirect('/admin/posts')
+            req.flash('success_msg', 'Post edited with success!')
+            res.redirect('/admin/posts')
         }).catch((err) => {
-            request.flash('error_msg', 'Error save the edition!')
-            response.redirect('/admin/posts')
+            req.flash('error_msg', 'Error save the edition!')
+            res.redirect('/admin/posts')
         })
 
     }).catch((err) => {
-        request.flash('error_msg', 'Error save the edition!')
-        response.redirect('/admin/posts')
+        req.flash('error_msg', 'Error save the edition!')
+        res.redirect('/admin/posts')
     })
 })
 
-router.post('/posts/delete', itsAdmin, (request, response) => {
-    Post.deleteOne({_id: request.body.id}).then(() => {
-        request.flash('success_msg', 'Post deleted with success')
-        response.redirect('/admin/posts')
+router.post('/posts/delete', itsAdmin, (req, res) => {
+    Post.deleteOne({_id: req.body.id}).then(() => {
+        req.flash('success_msg', 'Post deleted with success')
+        res.redirect('/admin/posts')
     }).catch((err) => {
-        request.flash('error_msg', 'Error delete the post')
-        response.redirect('/admin/posts')
+        req.flash('error_msg', 'Error delete the post')
+        res.redirect('/admin/posts')
     })
+})
+
+router.get('/administrator', itsAdmin, (req, res) => {
+    res.render('admin/administrator')
 })
 
 module.exports = router

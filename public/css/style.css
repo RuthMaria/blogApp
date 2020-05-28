@@ -8,23 +8,68 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.678);
 }
 
+#buttons{
+    display:inline-block;
+    padding: 11px 21px; 
+    vertical-align: middle;
+}
+
+#format{
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.2);
+}
+
+#format2{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.678);
+}
+
+#section2{
+    background:white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 50rem;
+    margin: auto;
+    text-align: left;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.678);
+}
+
+#section3{
+    background:white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 70rem;
+    margin: auto;
+    text-align: left;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.678);
+}
+
 #email, #password{ 
     color: #62748e;
     font-size: 12px;
     font-weight: bold;
 }
 
-#title, #copyright{
+#fields{
+    color: #62748e;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#title{
     text-align: center;
     color: #62748e;
 }
 
-footer{
-    color: #62748e;
+#copyright{
     text-align: center;
-    font-style: italic;
-    font-weight: bold;
+    color: black;
+}
+
+footer{
+    color:black;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
     padding: 15px;
+    font-size: 17px;
 }
 
 sub{

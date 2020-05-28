@@ -1,17 +1,27 @@
-<h2>{{category.name}}</h2>
-{{#each posts}}
+<!-- All posts of the given category -->
 
-<div class='card mt-4'>
-  <div class="card-body">
-    <h3>{{title}}</h3>
-    <p>{{description}}</p>
-    <a href="/post/{{slug}}" class="btn btn-success" role="button">Read more</a>
-    <hr>
-    <small>Publish date: {{#formatDate date}}{{/formatDate}}</small>
+<h2 class="text-center mb-4">{{category.name}}</h2>
+<div class="card-columns">
+
+  {{#each posts}}
+
+  <div class='card text-center mt-4' id="format">
+    <div class="card-body">
+      <h3 class="card-title">{{title}}</h3>
+      <p class="card-text">{{description}}</p>
+      <a href="/post/{{slug}}" class="btn btn-info btn-sm" role="button">Read more</a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Publish date: {{#formatDate date}}{{/formatDate}}</small>
+    </div>
   </div>
+
+  {{else}}
+  <h5>No posts</h5>
+  
+  {{/each}}
 </div>
 
-{{else}}
-<h5>No posts</h5>
-{{/each}}
-</div>
+<footer>
+    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 
+</footer>

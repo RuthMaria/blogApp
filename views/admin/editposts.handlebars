@@ -3,53 +3,55 @@
 
 {{else}}
 {{/each}}
+<section id="section2">
+    <h2 class="h3 mt-2 text-center mb-4" id="title">Edit post</h2>
 
-<div class="card mx-auto" style="width: 60rem">
-    <div class="card-body">
-        <h3 class="text-center mb-4"></hh3>Edit post</h3>
-        <form action="/admin/post/edit" method="POST">
-            <input type="hidden" value="{{post._id}}" name="id">
-            <label for="title">Title: </label>
-            <input type="text" name="title" class="form-control mb-3" value="{{post.title}}" required>
+    <div class="card mx-auto" id="fields">
+        <div class="card-body">
+            <form action="/admin/post/edit" method="POST">
+                <input type="hidden" value="{{post._id}}" name="id">
+                <label for="title">Title: </label>
+                <input type="text" name="title" class="form-control mb-3" value="{{post.title}}" required>
 
-            <label for="slug">Slug: </label>
-            <input type="text" name="slug" class="form-control mb-3" value="{{post.slug}}" required>
+                <label for="slug">Slug: </label>
+                <input type="text" name="slug" class="form-control mb-3" value="{{post.slug}}" required>
 
-            <label for="description">Description: </label>
-            <input type="text" name="description" class="form-control mb-3" value="{{post.description}}" required>
+                <label for="description">Description: </label>
+                <input type="text" name="description" class="form-control mb-3" value="{{post.description}}" required>
 
-            <label for="content">Content: </label>
-            <textarea name="content" class='form-control mb-3' required>{{post.content}}</textarea>
+                <label for="content">Content: </label>
+                <textarea name="content" class='form-control mb-3' required>{{post.content}}</textarea>
 
-            <label for="category">Category: </label>
-            <select name="category" class="custom-select">
-                {{#each categories}}
-                <option value="{{_id}}">{{name}}</option>
-                {{else}}
-                <option value="0"> No registered categories </option>
-                {{/each}}
-            </select>
+                <label for="category">Category: </label>
+                <select name="category" class="custom-select">
+                    {{#each categories}}
+                    <option value="{{_id}}">{{name}}</option>
+                    {{else}}
+                    <option value="0"> No registered categories </option>
+                    {{/each}}
+                </select>
 
-            <button type="submit" class="btn btn-success mt-4" style="float:right"> Update </button>
-        </form>
-        <script>
+                <button type="submit" class="btn btn-success btn-lg btn-block mt-4"> Update </button>
+            </form>
+            <script>
 
-            function updateSel() {
-                var category = document.getElementById("category")
-                var option1 = document.getElementsByTagName("option")
-                var id_sel = "{{post.category._id}}"
+                function updateSel() {
+                    var category = document.getElementById("category")
+                    var option1 = document.getElementsByTagName("option")
+                    var id_sel = "{{post.category._id}}"
 
-                for (var i = 0; i < option1.length; i++) {
-                    if (option1[i].value == id_sel) {
-                        option1[i].setAttribute("selected", "true")
+                    for (var i = 0; i < option1.length; i++) {
+                        if (option1[i].value == id_sel) {
+                            option1[i].setAttribute("selected", "true")
+                        }
                     }
                 }
-            }
-            updateSel()
-        </script>
+                updateSel()
+            </script>
+        </div>
     </div>
-</div><br>
+</section>
 
 <footer>
-    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved. 
+    &copy; 2020 <a href="mailto:ruthmariia01@gmail.com" id="copyright">Ruth Maria</a>, Inc. All rights reserved.
 </footer>
