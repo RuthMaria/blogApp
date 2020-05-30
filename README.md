@@ -18,12 +18,12 @@ Admin profile
 - Access to CRUD (Create, Read, Update and Delete) of posts
 - Access to categories CRUD
 
-This project is part of my nodeJS studies, based on the [Youtube course] (https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B).
+This project is part of my nodeJS studies, based on the [Youtube course](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B).
 
 
 ## Project hosted at heroku
 
-Access the blog by clicking [here] (https://aqueous-fjord-54281.herokuapp.com/)
+Access the blog by clicking [here](https://aqueous-fjord-54281.herokuapp.com/)
 
 
 ## Run the project locally
@@ -47,7 +47,7 @@ git clone https://github.com/RuthMaria/blogApp.git
 npm install 
 ```
 
--  Comment on this [line] (https://github.com/RuthMaria/blogApp/blob/master/routes/user.js#L42), if you want to test the user profile
+-  Comment on this [line](https://github.com/RuthMaria/blogApp/blob/master/routes/user.js#L42), if you want to test the user profile
 
 - Create the database
 
