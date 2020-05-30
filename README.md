@@ -29,11 +29,13 @@ Este projeto faz parte dos meus estudos de nodeJS, baseado no curso do [Youtube]
 ## Executar o projeto
 
 - Clonar este repositório
+
 ```
 git clone https://github.com/RuthMaria/blogApp.git
 ```
 
 - Instalar todas as dependências indicadas no package.json
+
 ```
 npm install 
 ```
@@ -41,13 +43,19 @@ npm install
 -  Descomentar esta [linha](https://github.com/RuthMaria/blogApp/blob/master/routes/user.js#L42) 
 
 
+- Inicializar o mongoDB no CMD
+
+```
+mongod
+```
+
 - Rodar o projeto
 
 ```
 nodemon app.js
 ```
 
-- Digitar no navegador a URL abaixo
+- Digitar a URL no navegador
 
 ```
 https://localhost:8080
