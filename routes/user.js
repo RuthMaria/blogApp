@@ -39,7 +39,7 @@ router.post('/registry', (req, res) => {
                     name: req.body.name,
                     email: req.body.email,
                     password: req.body.password,
-                    // itsAdmin:1
+                    itsAdmin:1
                 })
 
                 bcrypt.genSalt(10, (error, salt) => {

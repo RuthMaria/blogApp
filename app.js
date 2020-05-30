@@ -139,7 +139,7 @@ app.use('/users', users)
 
 // Others
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080  // get a defined port on heroku or locally
 app.listen(PORT, () => {
     console.log("The server is running on URL http://localhost:"+PORT)
 })

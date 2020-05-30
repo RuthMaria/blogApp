@@ -1,64 +1,77 @@
 # Blog 
 
-Um simples blog de postagens, onde cada postagem possui uma categoria.
+A simple blog, where each post has a category.
 
-O login do site é criptografado, tanto para usuários como para administradores. Então, dependendo do usuário que logar, determinadas funcionalidades não serão permitidas. A seguir, segue as funcionalidades permitidas para cada perfil.
-
-Perfil usuário
-- Criar uma conta
-- Fazer login 
-- Fazer log out
-- Acessar todas as postagens 
-- Acessar a lista de categorias
-- Acessar as postagens de cada categoria.
-
-Perfil administrador
-- Todas as funcionalidade do perfil usuário
-- Acesso ao CRUD (Create, read, update and delete) de postagens
-- Acesso ao CRUD de categorias
-
-Este projeto faz parte dos meus estudos de nodeJS, baseado no curso do [Youtube](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B).
+The site login is encrypted, both for users and administrators. So, depending on the user who logs in, certain functionality will not be allowed. The following features are allowed for each profile.
 
 
-## Requisitos
+User profile
+- Create an account
+- Login
+- Log out
+- Access all posts
+- Access the list of categories
+- Access posts of each category
+
+Admin profile
+- All user profile functionality
+- Access to CRUD (Create, Read, Update and Delete) of posts
+- Access to categories CRUD
+
+This project is part of my nodeJS studies, based on the [Youtube course] (https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B).
+
+
+## Project hosted at heroku
+
+Access the blog by clicking [here] (https://aqueous-fjord-54281.herokuapp.com/)
+
+
+## Run the project locally
+
+### Requirements
 - MongoDB
-- NodeJS na sua versão LTS
+- NodeJS in its LTS version
 - Visual Studio Code
 
+### Commands
 
-## Executar o projeto
-
-- Clonar este repositório
+- Clone this repository
 
 ```
 git clone https://github.com/RuthMaria/blogApp.git
 ```
 
-- Instalar todas as dependências indicadas no package.json
+- Install all the dependencies indicated in the package.json
 
 ```
 npm install 
 ```
 
--  Descomentar esta [linha](https://github.com/RuthMaria/blogApp/blob/master/routes/user.js#L42) 
+-  Comment on this [line] (https://github.com/RuthMaria/blogApp/blob/master/routes/user.js#L42), if you want to test the user profile
 
+- Create the database
 
-- Inicializar o mongoDB no CMD
+```
+CREATE DATABASE blogapp
+```
+
+- Initialize mongoDB in CMD
 
 ```
 mongod
 ```
 
-- Rodar o projeto
+- Run the project
 
 ```
 nodemon app.js
 ```
 
-- Digitar a URL no navegador
+- Type the URL in the browser
 
 ```
 https://localhost:8080
 ```
 
-- Criar uma conta administrador e logar no blog 
+- Create an administrator account and log in to the blog
+
