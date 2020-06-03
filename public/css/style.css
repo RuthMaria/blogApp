@@ -20,6 +20,7 @@
 
 #format2{
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.678);
+    width: 30rem;
 }
 
 #section2{
@@ -76,4 +77,15 @@ sub{
     color: #de0a0a;
     font-size: 95%;
     top: -2px;
+}
+
+@media (max-width: 500px) {
+    #section, #section2 {
+        width: auto;
+        padding: auto;
+    }
+
+    #format2 {
+        width: auto;
+    }
 }
