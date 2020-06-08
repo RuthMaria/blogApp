@@ -1,8 +1,14 @@
-# Blog 
 
+<h1 align="center">📝 Blog </h1> 
+
+
+## :information_source: About
+
+<p align="justify">
 A simple blog, where each post has a category.
 
 The site login is encrypted, both for users and administrators. So, depending on the user who logs in, certain functionality will not be allowed. The following features are allowed for each profile.
+</p>
 
 
 User profile
@@ -18,15 +24,42 @@ Admin profile
 - Access to CRUD (Create, Read, Update and Delete) of posts
 - Access to categories CRUD
 
-This project is part of my nodeJS studies, based on the [Youtube course](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B).
+This project is part of my nodeJS studies, based on the [Youtube course](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B). 
 
+<br>
 
-## Project hosted at heroku
+## :computer: Technologies Used
+ * HTML
+ * CSS
+ * JavaScript
+ * Node.js
+ * MongoDB
+ * Express
+ * Template engine Handlebars
+
+<br>
+
+ ## :beginner: Dependencies
+  * Bcryptjs
+  * Body-parser
+  * Connect-flash
+  * Express
+  * Express-handlebars
+  * Express-session
+  * Moment
+  * Mongoose
+  * Passport
+  * Passport-local 
+
+<br>
+
+## :anchor: Project hosted at heroku
 
 Access the blog by clicking [here](https://aqueous-fjord-54281.herokuapp.com/)
 
+<br>
 
-## Run the project locally
+## :gear: Run the project locally
 
 ### Requirements
 - MongoDB
