@@ -35,6 +35,7 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
  * Node.js
  * MongoDB
  * Express
+ * Bootstrap
  * Template engine Handlebars
 
 <br>
