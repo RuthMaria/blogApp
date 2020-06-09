@@ -1,8 +1,19 @@
 
 <h1 align="center">📝 Blog </h1> 
 
+## :information_source: Índice
+- [About](#about)
+- [Technologies Used](#technologies)
+- [Dependencies](#dependencies)
+- [Project hosted at heroku](#heroku)
+- [Run the project locally](#run)
+- [How to contribute](#contribute)
+- [License](#license)
 
-## :information_source: About
+
+<a id="about"></a><br>
+
+## :books: About
 
 <p align="justify">
 A simple blog, where each post has a category.
@@ -26,7 +37,7 @@ Admin profile
 
 This project is part of my nodeJS studies, based on the [Youtube course](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B). 
 
-<br>
+<a id="technologies"></a><br>
 
 ## :computer: Technologies Used
  * HTML
@@ -38,7 +49,7 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
  * Bootstrap
  * Template engine Handlebars
 
-<br>
+<a id="dependencies"></a><br>
 
  ## :beginner: Dependencies
   * Bcryptjs
@@ -52,13 +63,13 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
   * Passport
   * Passport-local 
 
-<br>
+<a id="heroku"></a><br>
 
 ## :anchor: Project hosted at heroku
 
 Access the blog by clicking [here](https://aqueous-fjord-54281.herokuapp.com/)
 
-<br>
+<a id="run"></a><br>
 
 ## :gear: Run the project locally
 
@@ -109,3 +120,23 @@ https://localhost:8080
 
 - Create an administrator account and log in to the blog
 
+<a id="contribute"></a><br>
+
+## :recycle: How to contribute
+
+- Fork this repository,
+- Create a branch with your feature: `git checkout -b my-feature`
+- Commit your changes: `git commit -m 'feat: My new feature'`
+- Push your branch: `git push origin my-feature`
+
+<a id="license"></a><br>
+
+## :memo: License
+
+This project is under the MIT license. See the  file [LICENSE](LICENSE.md) for more details.
+
+---
+
+<h4 align="center">
+    Developed with 💜 by <a href="https://www.linkedin.com/in/ruth-maria-9b256071/" target="_blank">Ruth Maria</a>
+</h4>
