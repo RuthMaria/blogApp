@@ -106,6 +106,13 @@ CREATE DATABASE blogapp
 mongod
 ```
 
+In other CMD, write:
+
+```
+mongo
+use blogapp
+```
+
 - Run the project
 
 ```
