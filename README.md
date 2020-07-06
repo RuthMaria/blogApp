@@ -120,7 +120,7 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
 <br>
 
 * ### Edit Post
-![Edit Post](https://github.com/RuthMaria/blogApp/blob/master/.github/editPost.png) 
+![Edit Post](https://github.com/RuthMaria/blogApp/blob/master/.github/EditPost.png) 
 
 
 <a id="technologies"></a><br>
