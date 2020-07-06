@@ -46,7 +46,7 @@ Admin profile
 This project is part of my nodeJS studies, based on the [Youtube course](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B). 
 
 
-<a id="#screens"></a><br>
+<a id="screens"></a><br>
 
 ## :iphone: Screens
 <br>
@@ -121,7 +121,10 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
 
 * ### Edit Post
 ![Edit Post](https://github.com/RuthMaria/blogApp/blob/master/.github/editPost.png) 
+
 <br>
+
+**[⬆ voltar ao topo](#About)**
 
 <a id="technologies"></a><br>
 
@@ -148,6 +151,10 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
   * Mongoose
   * Passport
   * Passport-local 
+
+<br>
+
+**[⬆ voltar ao topo](#About)**
 
 <a id="heroku"></a><br>
 
@@ -213,6 +220,10 @@ https://localhost:8080
 ```
 
 - Create an administrator account and log in to the blog
+
+<br>
+
+**[⬆ voltar ao topo](#About)**
 
 <a id="contribute"></a><br>
 
