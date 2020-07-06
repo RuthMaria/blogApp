@@ -168,9 +168,9 @@ To see the execution of the project click [here](https://youtu.be/c6m8EOBSAhI)
 ## :gear: Run the project locally
 
 ### Requirements
-- MongoDB
-- NodeJS in its LTS version
-- Visual Studio Code
+- [MongoDB](https://www.mongodb.com/try/download/community)
+- [NodeJS in its LTS version](https://nodejs.org/en/download/)
+- [Visual Studio Code](https://code.visualstudio.com/download)
 
 ### Commands
 
@@ -215,8 +215,6 @@ https://localhost:8080
 ```
 
 - Create an administrator account and log in to the blog
-
-<br>
 
 <a id="contribute"></a><br>
 
