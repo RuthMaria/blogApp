@@ -2,11 +2,10 @@
 <h1 align="center">📝 Blog </h1> 
 
 <p align="center">
-  <a href="#screens">Screens</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#execution">View project execution</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
+  <a href="#heroku">Project hosted at heroku</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Technologies Used</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#dependencies">Dependencies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#heroku">Project hosted at heroku</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#execution">View project execution</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#run">Run the project locally</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#contribute">How to contribute</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#license">license</a>
@@ -46,82 +45,18 @@ Admin profile
 This project is part of my nodeJS studies, based on the [Youtube course](https://www.youtube.com/playlist?list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B). 
 
 
-<a id="screens"></a><br>
+<a id="execution"></a><br>
 
-## :iphone: Screens
-<br>
+## :eyes: View project execution
 
-### USER PROFILE
+![video](https://github.com/RuthMaria/blogApp/blob/master/.github/video.gif)
 
-<br>
 
-* ### Home 
-![Home](https://github.com/RuthMaria/blogApp/blob/master/.github/home.png) 
+<a id="heroku"></a><br>
 
-<br>
+## :anchor: Project hosted at heroku
 
-* ### Sign up
-![signup](https://github.com/RuthMaria/blogApp/blob/master/.github/signup.png) 
-
-<br>
-
-* ### Log in
-![Login](https://github.com/RuthMaria/blogApp/blob/master/.github/login.png) 
-
-<br>
-
-* ### Categories
-![categories](https://github.com/RuthMaria/blogApp/blob/master/.github/categories.png) 
-
-<br>
-
-* ### Posts by category
-![Posts by category](https://github.com/RuthMaria/blogApp/blob/master/.github/postsByCategory.png) 
-
-<br>
-
-* ### Post
-![post](https://github.com/RuthMaria/blogApp/blob/master/.github/post.png) 
-
-<br>
-
-### ADMIN PROFILE
-
-<br>
-
-* ### Admin area
-![Admin area](https://github.com/RuthMaria/blogApp/blob/master/.github/admin-area.png) 
-
-<br>
-
-* ### List Of Categories
-![List Of Categories](https://github.com/RuthMaria/blogApp/blob/master/.github/listOfCategories.png) 
-
-<br>
-
-* ### New category
-![New category](https://github.com/RuthMaria/blogApp/blob/master/.github/newCategory.png) 
-
-<br>
-
-* ### Edit category
-![Edit category](https://github.com/RuthMaria/blogApp/blob/master/.github/editCategory.png) 
-
-<br>
-
-* ### List of posts
-![List of post](https://github.com/RuthMaria/blogApp/blob/master/.github/listOfPosts.png) 
-
-<br>
-
-* ### New Post
-![New Post](https://github.com/RuthMaria/blogApp/blob/master/.github/newPost.png) 
-
-<br>
-
-* ### Edit Post
-![Edit Post](https://github.com/RuthMaria/blogApp/blob/master/.github/EditPost.png) 
-
+Access the blog by clicking [here](https://aqueous-fjord-54281.herokuapp.com/)
 
 <a id="technologies"></a><br>
 
@@ -148,20 +83,6 @@ This project is part of my nodeJS studies, based on the [Youtube course](https:/
   * Mongoose
   * Passport
   * Passport-local 
-
-<br>
-
-<a id="heroku"></a><br>
-
-## :anchor: Project hosted at heroku
-
-Access the blog by clicking [here](https://aqueous-fjord-54281.herokuapp.com/)
-
-<a id="execution"></a><br>
-
-## :eyes: View project execution
-
-To see the execution of the project click [here](https://youtu.be/c6m8EOBSAhI)
 
 <a id="run"></a><br>
 
